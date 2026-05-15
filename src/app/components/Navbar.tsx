@@ -4,7 +4,7 @@ import React from 'react'
 const Navbar = () => {
   return (
     <>
-      <nav className='Navbr w-[92vw] h-18 mb-8 mt-5 bg-gray-100 flex justify-around items-center ml-15 rounded-2xl'>
+      <nav className='Navbr w-[92vw] h-18 mb-8 mt-5 bg-red-100 flex justify-around items-center ml-15 rounded-2xl'>
         <div className="logo text-[22px] font-bold">Apna Card</div>
         <div className="links ">
             <ul className='flex gap-3'>
