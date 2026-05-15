@@ -1,0 +1,30 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Get code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Login to Docker Hub
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      # 3. Build Docker image
+      - name: Build image
+        run: docker build -t nextjs-app .
+
+      # 4. Tag image
+      - name: Tag image
+        run: docker tag nextjs-app ${{ secrets.DOCKER_USERNAME }}/nextjs-app:latest
+
+      # 5. Push image
+      - name: Push image
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/nextjs-app:latest
